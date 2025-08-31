@@ -8,7 +8,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import Login from './components/Login'
-import Signup from './components/signup'
+import Signup from './components/Signup'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
