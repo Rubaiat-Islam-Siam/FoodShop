@@ -11,6 +11,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Order from './components/Order_Fixed'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/foodDetails/:id' element={<Fooddetails/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/order/:id' element={<Order/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
       </Routes>

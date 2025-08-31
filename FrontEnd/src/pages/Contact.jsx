@@ -1,209 +1,206 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    message: ""
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    toast('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    // Form submission logic would go here
+    console.log("Form submitted:", formData);
+    toast("Thank you for your message! We'll get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header with decorative elements */}
-        <div className="text-center mb-16 relative">
-          <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-12 right-12 w-24 h-24 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen bg-white flex items-center justify-center p-4 md:p-10 font-['Poppins']">
+      <div className="bg-amber-50 w-full max-w-5xl h-auto md:h-[550px] flex flex-col md:flex-row rounded-2xl shadow-2xl overflow-hidden relative border-2 border-amber-200">
+        {/* Left Side - Form */}
+        <div className="flex-1 bg-amber-50 p-6 md:p-10 text-black flex flex-col justify-center gap-6 relative">
           
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 relative z-10">
-            Get in <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto relative z-10">
-            We'd love to hear from you! Send us a message and we'll respond as soon as possible.
-          </p>
+          <div className="animate-slide-up">
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
+              Contact Us
+            </h1>
+            <p className="text-sm md:text-md max-w-[350px] mt-2 text-amber-800">
+              Feel free to contact us any time. We will get back to you as soon as possible.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-2 text-black animate-slide-up">
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full md:w-[350px] p-3 border-b-2 border-amber-400 bg-transparent outline-none transition-all duration-300 focus:shadow-[0_4px_6px_-1px_rgba(255,193,7,0.3),0_2px_4px_-1px_rgba(255,193,7,0.1)]"
+              />
+             
+            </div>
+            
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full md:w-[350px] p-3 border-b-2 border-amber-400 bg-transparent outline-none transition-all duration-300 focus:shadow-[0_4px_6px_-1px_rgba(255,193,7,0.3),0_2px_4px_-1px_rgba(255,193,7,0.1)]"
+              />
+             
+            </div>
+            
+            <div className="relative">
+              <input
+                type="text"
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="w-full md:w-[350px] p-3 border-b-2 border-amber-400 bg-transparent outline-none transition-all duration-300 focus:shadow-[0_4px_6px_-1px_rgba(255,193,7,0.3),0_2px_4px_-1px_rgba(255,193,7,0.1)]"
+              />
+              
+            </div>
+            
+            <button
+              type="submit"
+              className="w-full md:w-[350px] mt-2 bg-gradient-to-r from-amber-600 to-yellow-600 text-white font-bold p-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden"
+            >
+              <span>SEND</span>
+              
+            </button>
+          </form>
+
+          {/* Yellow corner accent top-left */}
+          <div className="absolute top-0 left-0 w-10 h-10 bg-yellow-400 clip-polygon-top-left"></div>
+          
         </div>
 
-        <div className="flex justify-center">
-          {/* Contact Form with enhanced styling */}
-          <div className="w-full max-w-2xl">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transform transition-all duration-300 hover:shadow-2xl">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
-                <h2 className="text-2xl font-bold">Send Us a Message</h2>
-                <p className="text-blue-100 mt-1">Fill out the form below and we'll get back to you shortly</p>
+
+        {/* Right Side - Info Box - CENTERED */}
+        <div className="w-full md:w-[450px] h-auto my-auto justify-end md:h-[400px] flex items-center justify-center relative z-10">
+          <div className="bg-gradient-to-br from-gray-900 to-black text-white p-6 md:p-8 flex flex-col justify-center rounded-2xl gap-5 shadow-2xl border-2 border-amber-500 w-full max-w-[400px] h-auto">
+            <h2 className="text-2xl font-bold text-yellow-400 animate-fade-in">Info</h2>
+            
+            <div className="space-y-4 animate-fade-in">
+              <p className="info-item flex items-center gap-3 transition-all duration-300 p-2 rounded hover:bg-amber-400/20 hover:translate-x-1">
+                <i className="fas fa-envelope text-yellow-400 w-5"></i>
+                <span>siamthelegendman@gmail.com</span>
+              </p>
+              <p className="info-item flex items-center gap-3 transition-all duration-300 p-2 rounded hover:bg-amber-400/20 hover:translate-x-1">
+                <i className="fas fa-phone text-yellow-400 w-5"></i>
+                <span>+880 17233-35513</span>
+              </p>
+              <p className="info-item flex items-center gap-3 transition-all duration-300 p-2 rounded hover:bg-amber-400/20 hover:translate-x-1">
+                <i className="fas fa-map-marker-alt text-yellow-400 w-5"></i>
+                <span>14 Greenroad St.</span>
+              </p>
+              <p className="info-item flex items-center gap-3 transition-all duration-300 p-2 rounded hover:bg-amber-400/20 hover:translate-x-1">
+                <i className="fas fa-clock text-yellow-400 w-5"></i>
+                <span>09:00 AM - 10:00 PM</span>
+              </p>
+            </div>
+            
+            <div className="flex space-x-4 mt-4 animate-fade-in">
+              <div  className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center text-black hover:scale-110 transition-transform">
+                <i className="fab fa-facebook-f" ></i>
+                <a href="https://www.facebook.com/rubaiatislam.siam"></a>
               </div>
-              
-              <form onSubmit={handleSubmit} className="p-8 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="relative">
-                    <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Your Name</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                       
-                      </div>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full pl-5 text-black pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                        placeholder="Enter Name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="relative">
-                    <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        
-                      </div>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full pl-5 pr-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                        placeholder="Enter Email"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="relative">
-                  <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">Subject</label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                     
-                    </div>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full pl-5 text-black pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                      placeholder="What is this regarding?"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className="relative">
-                  <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Your Message</label>
-                  <div className="relative">
-                    <div className="absolute top-3 left-3 pointer-events-none">
-                      
-                    </div>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows="5"
-                      className="w-full pl-5 text-black pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
-                      placeholder="Tell us how we can help you..."
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 shadow-md hover:shadow-lg flex items-center justify-center"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                  Send Message
-                </button>
-              </form>
+              <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center text-black hover:scale-110 transition-transform">
+                <i className="fab fa-twitter"></i>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-yellow-200 font-bold flex items-center justify-center text-black hover:scale-110 transition-transform">
+                <i className="fab fa-instagram font-bold"></i>
+              </div>
             </div>
-          </div>
-        </div>
-        
-        {/* FAQ Section with enhanced styling */}
-        <div className="mt-16 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
-            <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-            <p className="text-blue-100 mt-1">Find quick answers to common questions</p>
-          </div>
-          
-          <div className="p-8 space-y-6">
-            <div className="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 rounded-r-lg transition-all duration-300 hover:border-blue-600 hover:bg-blue-100">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">How long does delivery take?</h3>
-              <p className="text-gray-600">Delivery typically takes 30-45 minutes depending on your location and current order volume.</p>
-            </div>
+
+  
             
-            <div className="border-l-4 border-purple-500 pl-4 py-2 bg-purple-50 rounded-r-lg transition-all duration-300 hover:border-purple-600 hover:bg-purple-100">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Do you offer catering services?</h3>
-              <p className="text-gray-600">Yes, we offer catering for events of all sizes. Contact us for custom menus and pricing.</p>
-            </div>
-            
-            <div className="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-50 rounded-r-lg transition-all duration-300 hover:border-indigo-600 hover:bg-indigo-100">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">What payment methods do you accept?</h3>
-              <p className="text-gray-600">We accept all major credit cards, PayPal, and cash on delivery.</p>
-            </div>
-            
-            <div className="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 rounded-r-lg transition-all duration-300 hover:border-blue-600 hover:bg-blue-100">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Do you have vegetarian/vegan options?</h3>
-              <p className="text-gray-600">Yes, we have a wide variety of vegetarian and vegan dishes. Look for the special icons on our menu.</p>
-            </div>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
+      {/* Add Font Awesome for icons */}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      
+      {/* Add Google Fonts */}
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      
+      <style>
+        {`
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
           }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
+          
+          @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
           }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
+          
+          @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
           }
-          100% {
-            transform: translate(0px, 0px) scale(1);
+          
+          .animate-float {
+            animation: float 6s ease-in-out infinite;
           }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
+          
+          .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+          }
+          
+          .animate-slide-up {
+            animation: slideUp 0.5s ease-out forwards;
+            opacity: 0;
+          }
+          
+          .clip-polygon-top-left {
+            clip-path: polygon(0 0, 0% 100%, 100% 0);
+          }
+          
+          .clip-polygon-bottom-left {
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+          }
+          
+          .font-['Poppins'] {
+            font-family: 'Poppins', sans-serif;
+          }
+          
+          /* Staggered animations */
+          .animate-slide-up:nth-child(1) {
+            animation-delay: 0.1s;
+          }
+          
+          .animate-fade-in:nth-child(1) {
+            animation-delay: 0.3s;
+          }
+          
+          .animate-fade-in:nth-child(2) {
+            animation-delay: 0.5s;
+          }
+        `}
+      </style>
     </div>
   );
 };

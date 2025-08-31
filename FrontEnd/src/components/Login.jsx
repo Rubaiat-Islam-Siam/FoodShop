@@ -63,7 +63,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-2xl border border-indigo-100 transform transition-all duration-300 hover:shadow-xl">
         {/* Header with gradient background */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 py-4 px-6 -mx-10 -mt-10 rounded-t-2xl mb-6">
+        <div className="bg-[#6A89A7] py-4 px-6 -mx-10 -mt-10 rounded-t-2xl mb-6">
           <h2 className="text-center text-3xl font-bold text-white">
             Welcome Back
           </h2>
@@ -141,7 +141,7 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out">
+              <a href="#" className="font-medium text-[#0376e9] hover:text-indigo-500 transition duration-150 ease-in-out">
                 Forgot your password?
               </a>
             </div>
@@ -151,7 +151,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out shadow-md hover:shadow-lg ${
+              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#6A89A7] hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out shadow-md hover:shadow-lg ${
                 isLoading ? 'opacity-75 cursor-not-allowed' : ''
               }`}
             >
@@ -177,7 +177,7 @@ const Login = () => {
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out">
+              <a href="/signup" className="font-medium text-[#0567c9] hover:text-indigo-500 transition duration-150 ease-in-out">
                 Sign up here
               </a>
             </p>

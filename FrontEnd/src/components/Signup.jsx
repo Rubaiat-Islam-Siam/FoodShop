@@ -108,7 +108,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
-        <div className="py-6 px-8 bg-indigo-600">
+        <div className="py-6 px-8 bg-[#6A89A7]">
           <h1 className="text-3xl font-bold text-center text-white">Create Account</h1>
           <p className="text-center text-indigo-100 mt-2">Join us today!</p>
         </div>
@@ -189,7 +189,7 @@ const Signup = () => {
             <button 
               type="submit" 
               disabled={isLoading}
-              className={`w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out ${
+              className={`w-full py-3 px-4 bg-[#6A89A7] hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-in-out ${
                 isLoading ? 'opacity-75 cursor-not-allowed' : ''
               }`}
             >

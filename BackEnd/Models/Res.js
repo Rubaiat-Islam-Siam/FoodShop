@@ -6,6 +6,11 @@ const resSchema = mongoose.Schema({
     category: { type: String, required: true },
     image: { type: String },
     description: { type: String },
+    role: { 
+    type: String, 
+    enum: ["user", "delivery"], 
+    default: "user" 
+  }
 })
 
 const Food = mongoose.model('food', resSchema)
