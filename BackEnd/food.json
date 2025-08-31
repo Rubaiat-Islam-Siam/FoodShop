@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Cheese Burger",
+    "price": 250,
+    "description": "Juicy beef patty with cheese and fresh veggies",
+    "category": "Burger",
+    "image": "https://images.pexels.com/photos/1108117/pexels-photo-1108117.jpeg"
+  },
+  {
+    "name": "Chicken Biryani",
+    "price": 300,
+    "description": "Fragrant basmati rice with tender chicken and spices",
+    "category": "Rice",
+    "image": "https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "price": 600,
+    "description": "Classic pizza topped with mozzarella and pepperoni",
+    "category": "Pizza",
+    "image": "https://images.pexels.com/photos/842519/pexels-photo-842519.jpeg"
+  }
+  
+]

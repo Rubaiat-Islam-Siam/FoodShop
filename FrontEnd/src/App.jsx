@@ -1,0 +1,45 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import './App.css'
+import Navber from './components/Navber'
+import Home from './pages/Home'
+import Food from './pages/Food'
+import Fooddetails from './pages/Fooddetails'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Footer from './components/Footer'
+import Login from './components/Login'
+import Signup from './components/signup'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+
+function App() {
+  return (
+     <Router>
+      <Navber/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/food' element={<Food/>}/>
+        <Route path='/foodDetails/:id' element={<Fooddetails/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+      </Routes>
+      <Footer/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+     </Router>
+  )
+}
+
+export default App
