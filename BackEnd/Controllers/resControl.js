@@ -40,9 +40,36 @@ const createManyFood = async (req, res) => {
     }
 }
 
+const deleteFood = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedFood = await Food.findByIdAndDelete(id);
+        
+        if (!deletedFood) {
+            return res.status(404).json({ 
+                success: false, 
+                message: 'Food item not found' 
+            });
+        }
+        
+        res.status(200).json({ 
+            success: true, 
+            message: 'Food item deleted successfully',
+            deletedFood: deletedFood
+        });
+    } catch (err) {
+        console.error('Delete food error:', err);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Failed to delete food item' 
+        });
+    }
+}
+
 module.exports = {
     getFood,
     getFoodById,
     createFood,
-    createManyFood
+    createManyFood,
+    deleteFood
 }

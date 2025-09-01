@@ -8,8 +8,12 @@ const resSchema = mongoose.Schema({
     description: { type: String },
     role: { 
     type: String, 
-    enum: ["user", "delivery"], 
+    enum: ["user", "Admin"], 
     default: "user" 
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
