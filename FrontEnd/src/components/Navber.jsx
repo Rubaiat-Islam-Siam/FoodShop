@@ -25,7 +25,8 @@ const Navber = () => {
             setUserDetails({
               firstName: user.displayName || 'User',
               email: user.email,
-              photo: user.photoURL
+              photo: user.photoURL,
+              role: 'user'
             });
           }
         } catch (error) {
@@ -34,7 +35,8 @@ const Navber = () => {
           setUserDetails({
             firstName: user.displayName || 'User',
             email: user.email,
-            photo: user.photoURL
+            photo: user.photoURL,
+            role: 'user'
           });
         }
       } else {
@@ -64,24 +66,113 @@ const Navber = () => {
               <li><Link to='/food'>Foods</Link></li>
               <li><Link to='/about'>About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              {userDetails?.role === 'admin' && (
+                <>
+                  <li><hr className="my-2" /></li>
+                  <li className="menu-title">Admin Panel</li>
+                  <li><Link to='/admin/dashboard'>Dashboard</Link></li>
+                  <li><Link to='/admin/add-food'>Add Food</Link></li>
+                  <li><Link to='/admin/manage-foods'>Manage Foods</Link></li>
+                  <li><Link to='/admin/orders'>Orders</Link></li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl ml-10">FoodExpress</Link>
         </div>
         
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/food'>Foods</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+  <ul className="menu menu-horizontal px-1 gap-1">
+    <li>
+      <Link 
+        to='/' 
+        className="font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg px-4 py-2 transition-all duration-200"
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to='/food' 
+        className="font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg px-4 py-2 transition-all duration-200"
+      >
+        Foods
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to='/about' 
+        className="font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg px-4 py-2 transition-all duration-200"
+      >
+        About
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to="/contact" 
+        className="font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg px-4 py-2 transition-all duration-200"
+      >
+        Contact
+      </Link>
+    </li>
+
+    {userDetails?.role === 'admin' && (
+      <li className="relative group">
+        <button className="flex items-center font-semibold bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-sm hover:shadow-md rounded-lg px-4 py-2 w-full">
+          Admin Panel
+          <svg className="ml-1 w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div className="absolute hidden group-hover:block right-0 top-full pt-2 w-48 z-50">
+          <ul className="bg-black text-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+            <li>
+              <Link 
+                to='/admin/dashboard' 
+                className="block text-white hover:text-blue-600 hover:bg-blue-50 px-4 py-3 transition-colors duration-200 border-b border-gray-100"
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to='/admin/add-food' 
+                className="block text-white hover:text-blue-600 hover:bg-blue-50 px-4 py-3 transition-colors duration-200 border-b border-gray-100"
+              >
+                Add Food
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to='/admin/manage-foods' 
+                className="block text-white hover:text-blue-600 hover:bg-blue-50 px-4 py-3 transition-colors duration-200 border-b border-gray-100"
+              >
+                Manage Foods
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to='/admin/orders' 
+                className="block text-white hover:text-blue-600 hover:bg-blue-50 px-4 py-3 transition-colors duration-200"
+              >
+                Orders
+              </Link>
+            </li>
           </ul>
         </div>
+      </li>
+    )}
+  </ul>
+</div>
         
         <div className="navbar-end mr-10">
           {userDetails ? (
             <div className="flex items-center gap-3">
               {/* Profile Image with fallback */}
+              {userDetails.role === 'admin' &&(
+                <div className='badge badge-error badge-sm'>ADMIN</div>
+              )}
+
               <div className="avatar">
                 <div className="w-8 h-8 rounded-full">
                   {userDetails.photo ? (
@@ -105,7 +196,11 @@ const Navber = () => {
                 </div>
               </div>
               
-              <span className="text-sm font-medium">Hello, {userDetails.firstName || 'User'}</span>
+              <span className="text-sm font-medium">Hello, {userDetails.firstName || 'User'}
+                {userDetails.role === 'admin' && (
+                  <span className='text-red-600 font-bold ml-1'>(Admin)</span>
+                )}
+              </span>
               <button 
                 onClick={() => {
                   auth.signOut();

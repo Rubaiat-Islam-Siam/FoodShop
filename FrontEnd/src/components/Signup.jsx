@@ -12,7 +12,11 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [role,setRole] = useState('user')
+  const [adminCode,setAdminCode] = useState()
   const navigate = useNavigate();
+
+  const ADMIN_CODE = 'siam41';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,10 +44,12 @@ const Signup = () => {
                 email: user.email,
                 firstName: firstName.trim(), // Use state value and trim whitespace
                 lastName: lastName.trim(),   // Use state value and trim whitespace
+                role: role,
+                photo: null,
                 createdAt: new Date().toISOString()
             });
             
-            toast.success('Account created successfully!',{
+            toast.success(`${role === 'admin'? 'Admin' : 'User'} Account created successfully!`,{
                 position:'top-center'
             });
             navigate('/'); // Redirect to home or login page
@@ -86,6 +92,7 @@ const Signup = () => {
                 email: result.user.email,
                 firstName: result.user.displayName || 'Google User',
                 photo: result.user.photoURL,
+                role: 'user',
                 lastName: '',
                 createdAt: new Date().toISOString()
             });
@@ -167,6 +174,40 @@ const Signup = () => {
               required
             />
           </div>
+
+           <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Account Type
+              </label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full px-3 py-3 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="user">Regular User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            {
+              role === 'admin' && (
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    Admin Secret Code 
+                  </label>
+                  <input
+                   type="password" 
+                   required
+                   className="w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-black rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Enter admin secret code"
+                  value={adminCode}
+                  onChange={(e) => setAdminCode(e.target.value)}
+                   />
+                </div>
+              )
+            }
+
+
 
           {/* Remember Me */}
           <div className="flex items-center justify-between mb-6">

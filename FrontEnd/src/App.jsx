@@ -12,6 +12,8 @@ import Signup from './components/Signup'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Order from './components/Order_Fixed'
+import Dashboard from './components/Dashboard'
+import AddFood from './components/AddFood'
 
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
         <Route path='/order/:id' element={<Order/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
+
+        <Route path='/admin/dashboard' element={<Dashboard/>}/>
+        <Route path='/admin/add-food' element={<AddFood/>}/>
       </Routes>
       <Footer/>
       <ToastContainer
